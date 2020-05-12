@@ -4,4 +4,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Dech.Hal.Banking.Engines\Dech.Hal.Banking.Engines.csproj" />
+    <ProjectReference Include="..\Dech.Hal.Banking.Contracts\Dech.Hal.Banking.Contracts.csproj" />
+    <ProjectReference Include="..\Dech.Hal.Banking.Services\Dech.Hal.Banking.Services.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.3" />
+  </ItemGroup>
 </Project>

@@ -9,4 +9,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.3" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dech.Hal.Banking.Services\Dech.Hal.Banking.Services.csproj" />
+    <ProjectReference Include="..\Dech.Hal.Banking.Engines\Dech.Hal.Banking.Engines.csproj" />
+    <ProjectReference Include="..\Dech.Hal.Banking.Managers\Dech.Hal.Banking.Managers.csproj" />
+  </ItemGroup>
 </Project>

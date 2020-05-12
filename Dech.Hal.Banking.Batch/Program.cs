@@ -32,7 +32,7 @@ namespace Dech.Hal.Banking.Batch
                 Environment.ExitCode = (int)ExitCodes.Failed;
             }
             finally{
-                //Log.CloseAndFlush();
+                Log.CloseAndFlush();
             }
         }
 
@@ -46,8 +46,9 @@ namespace Dech.Hal.Banking.Batch
             })
             .ConfigureServices((hostingContext, services) =>
             {
+                services.RegisterServices();
                 services.AddHostedService<Startup>();
-                //services.
+                
             })
             .ConfigureLogging((hostingContext, logging) =>
             {
