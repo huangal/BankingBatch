@@ -23,7 +23,7 @@ namespace Dech.Hal.Banking.Batch
 
                 CreateHostBuilder(args).RunConsoleAsync();
 
-                Log.Information("Finishe Batch process");
+                Log.Information("Finished Batch process");
                 Environment.ExitCode = (int)ExitCodes.Success;
             }
             catch (Exception ex)
@@ -32,7 +32,7 @@ namespace Dech.Hal.Banking.Batch
                 Environment.ExitCode = (int)ExitCodes.Failed;
             }
             finally{
-                Log.CloseAndFlush();
+                //Log.CloseAndFlush();
             }
         }
 
@@ -46,7 +46,8 @@ namespace Dech.Hal.Banking.Batch
             })
             .ConfigureServices((hostingContext, services) =>
             {
-                services.RegisterServices();
+                
+                services.RegisterServices(hostingContext.Configuration);
                 services.AddHostedService<Startup>();
                 
             })

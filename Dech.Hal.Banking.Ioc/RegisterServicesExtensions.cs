@@ -10,9 +10,9 @@ namespace Dech.Hal.Banking.Ioc
 {
     public static class RegisterServicesExtensions
     {
-        public static IServiceCollection RegisterServices(this IServiceCollection services)
+        public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
-
+            RegisterLogger(configuration); 
             services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<IProcessManager, ProcessManager>();
 

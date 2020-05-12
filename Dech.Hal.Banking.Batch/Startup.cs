@@ -19,8 +19,8 @@ namespace Dech.Hal.Banking.Batch
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            Log.Information("Start Batch");
-            Console.WriteLine("Started");
+            Log.Information("Startup.StartAsync: Start Batch");
+            Console.WriteLine("Startup.StartAsync: Start Batch");
 
             _process.Run();
 
@@ -29,8 +29,9 @@ namespace Dech.Hal.Banking.Batch
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            Log.Information("Completed Batch");
-            Console.WriteLine("Completed");
+            Log.Information("Startup.StopAsync Completed Batch");
+
+            Console.WriteLine("Startup.StopAsync Completed Batch");
 
             //Log.CloseAndFlush();
             return Task.CompletedTask;
