@@ -1,4 +1,5 @@
 ﻿using System;
+using Dech.Hal.Banking.Contracts;
 using Dech.Hal.Banking.Contracts.Interfaces;
 using Dech.Hal.Banking.Managers;
 using Dech.Hal.Banking.Services;
@@ -15,6 +16,9 @@ namespace Dech.Hal.Banking.Ioc
             RegisterLogger(configuration); 
             services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<IProcessManager, ProcessManager>();
+
+            services.AddSingleton<UniqueCode>();
+            services.AddSingleton<IServiceDataProtection, ServiceDataProtection>();
 
             return services;
         }

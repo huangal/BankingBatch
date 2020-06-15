@@ -3,6 +3,9 @@ using System.IO;
 using System.Threading.Tasks;
 using Dech.Hal.Banking.Contracts;
 using Dech.Hal.Banking.Ioc;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,7 +35,7 @@ namespace Dech.Hal.Banking.Batch
                 Environment.ExitCode = (int)ExitCodes.Failed;
             }
             finally{
-                //Log.CloseAndFlush();
+                Log.CloseAndFlush();
             }
         }
 
@@ -49,7 +52,29 @@ namespace Dech.Hal.Banking.Batch
                 
                 services.RegisterServices(hostingContext.Configuration);
                 services.AddHostedService<Startup>();
-                
+                services.Configure<HostOptions>(option =>
+                {
+                    option.ShutdownTimeout = TimeSpan.FromSeconds(2);
+                });
+
+                services.AddDataProtection();
+                //.PersistKeysToFileSystem(new DirectoryInfo(@"c:\temp-keys"))
+                //.ProtectKeysWithDpapi();
+
+                services.AddDataProtection()
+                .UseCryptographicAlgorithms(new AuthenticatedEncryptorConfiguration
+                {
+                    EncryptionAlgorithm = EncryptionAlgorithm.AES_256_GCM,
+                    ValidationAlgorithm = ValidationAlgorithm.HMACSHA512
+
+                });
+                //.UseCryptographicAlgorithms(new AuthenticatedEncryptionSettings
+                //{
+                //    EncryptionAlgorithm = EncryptionAlgorithm.AES_256_GCM,
+                //    ValidationAlgorithm = ValidationAlgorithm.HMACSHA512
+                //});
+
+
             })
             .ConfigureLogging((hostingContext, logging) =>
             {

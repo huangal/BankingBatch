@@ -10,6 +10,8 @@
     <ProjectReference Include="..\Dech.Hal.Banking.Services\Dech.Hal.Banking.Services.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection" Version="3.1.4" />
   </ItemGroup>
 </Project>

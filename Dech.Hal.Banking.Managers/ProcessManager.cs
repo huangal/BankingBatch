@@ -1,5 +1,4 @@
 ﻿using System;
-using Dech.Hal.Banking.Contracts;
 using Dech.Hal.Banking.Contracts.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -9,18 +8,22 @@ namespace Dech.Hal.Banking.Managers
     {
         private readonly ICustomerService _customerService;
         private readonly ILogger _logger;
-        public ProcessManager(ICustomerService customerService, ILogger<ProcessManager> logger)
+        private readonly IServiceDataProtection _dataProtection;
+
+        public ProcessManager(ICustomerService customerService, ILogger<ProcessManager> logger, IServiceDataProtection dataProtection)
         {
             _customerService = customerService;
             _logger = logger;
+            _dataProtection = dataProtection;
         }
-
 
         public bool Run()
         {
 
             try
             {
+              
+
                 var customers = _customerService.GetCustomers();
                 Console.WriteLine();
 
@@ -41,6 +44,30 @@ namespace Dech.Hal.Banking.Managers
 
 
         }
+
+        //private async Task ReadMessagesAsync()
+        //{
+        //    connection.On<string, string>("ReceiveMessage", (user, message) =>
+        //    {
+        //        this.Dispatcher.Invoke(() =>
+        //        {
+        //            var newMessage = $"{user}: {message}";
+        //            messagesList.Items.Add(newMessage);
+        //        });
+        //    });
+
+        //    try
+        //    {
+        //        await connection.StartAsync();
+        //        messagesList.Items.Add("Connection started");
+        //        connectButton.IsEnabled = false;
+        //        sendButton.IsEnabled = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.ToString());
+        //    }
+        //}
 
 
     }
